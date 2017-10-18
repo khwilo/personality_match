@@ -88,3 +88,9 @@ match_handle = "@IBM"
 
 user_result = analyze(user_handle)
 match_result = analyze(match_handle)
+
+
+user = flatten(user_result)
+match = flatten(match_result)
+
+compared_results = compare(user, match)
