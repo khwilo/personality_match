@@ -54,3 +54,21 @@ def analyze(handle):
   pi_result = get_pi_client().profile(text)
   
   return pi_result
+
+def flatten(orig):
+  data = {}
+  
+  for c in orig['tree']['children']:
+    if 'children' in c:
+      for c2 in c['children']:
+        if 'children' in c2:
+          for c3 in c2['children']:
+            if 'children' in c3:
+              for c4 in c3['children']:
+                if (c4['category'] == 'personality'):
+                  data[c4['id']] = c4['percentage']
+                  if 'children' not in c3:
+                    if (c3['category'] == 'personality'):
+                      data[c3['id']] = c3['percentage']
+
+  return data 
