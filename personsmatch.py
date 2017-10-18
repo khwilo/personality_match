@@ -22,22 +22,7 @@ def get_twitter_client():
 
   return twitter_api
 
-# Retrieve data from Twitter.
-handle = "@khwilo"
-statuses = get_twitter_client().GetUserTimeline(screen_name=handle, count=200, include_rts=False)
-
-# This variable saves tweets.
-# Convert to bytes first.
-text = b"" 
-#text = "".encode() -> method 2
-
-# View the results.
-for status in statuses:
-  if (status.lang == 'en'):
-    text += status.text.encode('utf-8')
-
-
-def personality_insights_client():
+def get_pi_client():
   try:
     # IBM Bluemix credentials for Personality Insights
     pi_username = os.environ['PI_USERNAME']
@@ -50,3 +35,22 @@ def personality_insights_client():
   personality_insights = PersonalityInsights(username=pi_username, password=pi_password)
 
   return personality_insights
+
+
+def analyze(handle):
+  # Retrieve data from Twitter.
+  statuses = get_twitter_client().GetUserTimeline(screen_name=handle, count=200, include_rts=False)
+
+  # This variable saves tweets.
+  # Convert to bytes first.
+  text = b"" 
+  #text = "".encode() -> method 2
+
+  # View the results.
+  for status in statuses:
+    if (status.lang == 'en'):
+      text += status.text.encode('utf-8')
+
+  pi_result = get_pi_client().profile(text)
+  
+  return pi_result
