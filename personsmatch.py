@@ -84,3 +84,7 @@ def compare(dict1, dict2):
 
 user_handle = "@khwilo"
 match_handle = "@IBM"
+
+
+user_result = analyze(user_handle)
+match_result = analyze(match_handle)
