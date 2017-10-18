@@ -94,3 +94,5 @@ user = flatten(user_result)
 match = flatten(match_result)
 
 compared_results = compare(user, match)
+
+sorted_result = sorted(compared_results.items(), key=operator.itemgetter(1))
