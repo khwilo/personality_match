@@ -28,9 +28,11 @@ statuses = get_twitter_client().GetUserTimeline(screen_name=handle, count=200, i
 
 # This variable saves tweets.
 # Convert to bytes first.
-text = b""
+text = b"" 
+#text = "".encode() -> method 2
 
 # View the results.
 for status in statuses:
   if (status.lang == 'en'):
     text += status.text.encode('utf-8')
+    print(text)
