@@ -83,7 +83,7 @@ def compare(dict1, dict2):
   return compared_data
 
 user_handle = "@khwilo"
-match_handle = "@IBM"
+match_handle = "@jadytrix"
 
 
 user_result = analyze(user_handle)
@@ -96,3 +96,11 @@ match = flatten(match_result)
 compared_results = compare(user, match)
 
 sorted_result = sorted(compared_results.items(), key=operator.itemgetter(1))
+
+for keys, value in sorted_result[:5]:
+  print(keys),
+  print(user[keys]),
+  print('->'),
+  print(match[keys]),
+  print('->'),
+  print(compared_results[keys])
