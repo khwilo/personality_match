@@ -18,8 +18,8 @@ twitter_api = twitter.Api(consumer_key=twitter_consumer_key, consumer_secret=twi
 
 # Retrieve data from Twitter
 handle = "@khwilo"
-statuses = twitter_api.GetUserTimeline(screen_name=handle, count=5, include_rts=False)
+statuses = twitter_api.GetUserTimeline(screen_name=handle, count=200, include_rts=False)
 
 # View the results
 for status in statuses:
-  print(status)
+  print(status.text.encode('utf-8'))
