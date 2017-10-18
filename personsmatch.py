@@ -17,15 +17,20 @@ def get_twitter_client():
     sys.stderr.write("TWITTER_* environment variables not set\n")
     sys.exit(1)
 
-  # Create an instance of the Twitter API
+  # Create an instance of the Twitter API.
   twitter_api = twitter.Api(consumer_key=twitter_consumer_key, consumer_secret=twitter_consumer_secret, access_token_key=twitter_access_token, access_token_secret=twitter_access_secret)
 
   return twitter_api
 
-# Retrieve data from Twitter
+# Retrieve data from Twitter.
 handle = "@khwilo"
 statuses = get_twitter_client().GetUserTimeline(screen_name=handle, count=200, include_rts=False)
 
-# View the results
+# This variable saves tweets.
+# Convert to bytes first.
+text = b""
+
+# View the results.
 for status in statuses:
-  print(status.text.encode('utf-8'))
+  if (status.lang == 'en'):
+    text += status.text.encode('utf-8')
