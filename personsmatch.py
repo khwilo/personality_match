@@ -35,4 +35,18 @@ text = b""
 for status in statuses:
   if (status.lang == 'en'):
     text += status.text.encode('utf-8')
-    print(text)
+
+
+def personality_insights_client():
+  try:
+    # IBM Bluemix credentials for Personality Insights
+    pi_username = os.environ['PI_USERNAME']
+    pi_password = os.environ['PI_PASSWORD']
+  except KeyError:
+    sys.stderr.write("PI_* environment variables not set\n")
+    sys.exit(1)
+
+  # Create Personality Insights instance
+  personality_insights = PersonalityInsights(username=pi_username, password=pi_password)
+
+  return personality_insights
